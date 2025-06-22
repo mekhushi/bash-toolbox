@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: ./killport.sh <port>"
+  exit 1
+fi
+
+PORT=$1
+PID=$(lsof -t -i:$PORT)
+
+if [ -z "$PID" ]; then
+  echo "No process is using port $PORT"
+else
+  kill -9 $PID
+  echo "Killed process $PID using port $PORT"
+fi
