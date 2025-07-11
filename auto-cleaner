@@ -3,35 +3,35 @@
 echo "🧹 Starting System Clean-up..."
 
 # 1. Clean user temp files
-echo "📁 Cleaning user temp files..."
+echo "Cleaning user temp files..."
 rm -rf /tmp/*
 rm -rf $HOME/.cache/*
 
 # 2. Clean apt cache (for WSL/Ubuntu only)
 if command -v apt >/dev/null 2>&1; then
-  echo "🗑 Cleaning apt cache..."
+  echo " Cleaning apt cache..."
   sudo apt clean
   sudo apt autoremove -y
 fi
 
 # 3. Clean thumbnail cache
 if [ -d "$HOME/.thumbnails" ]; then
-  echo "🖼 Clearing thumbnail cache..."
+  echo "Clearing thumbnail cache..."
   rm -rf $HOME/.thumbnails/*
 fi
 
-# 4. Trash (if using Linux file manager)
+# 4. Trash 
 TRASH="$HOME/.local/share/Trash"
 if [ -d "$TRASH" ]; then
-  echo "🗑 Emptying trash..."
+  echo "Emptying trash..."
   rm -rf "$TRASH/files/"* "$TRASH/info/"*
 fi
 
 # 5. Log space before & after
-echo "💽 Disk usage before cleanup:"
+echo "Disk usage before cleanup:"
 df -h /
 
-echo "✅ Clean-up completed!"
-echo "💽 Disk usage after cleanup:"
+echo "Clean-up completed!"
+echo "Disk usage after cleanup:"
 df -h /
 
